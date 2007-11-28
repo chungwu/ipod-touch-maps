@@ -1,0 +1,86 @@
+<html><head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head><body>
+
+<h2>Google Maps for the iPod Touch</h2>
+
+<p>
+Thanks for trying <a href='maps.html'>Grapier Touch Maps</a>!  This is Google Maps optimized for the iPod Touch (which, very sadly and incredibly, came without the Google Maps app built for the iPhone).  You can navigate around by dragging the map with two fingers, and can search for places, directions, and local businesses.  This is all accomplished by the <a href='http://www.google.com/apis/maps/'>Google Maps API</a> and the <a href='http://code.google.com/apis/ajaxsearch/'>Google AJAX Search API</a>.
+</p>
+
+<p>
+You can find the page at <a href='http://www.grapier.com/maps.html'>www.grapier.com/maps.html</a>.  Enjoy!
+</p>
+
+
+<h3>Instructions:</h3>
+
+<p>
+  </p><ul>
+    <li><strong>Drag the map around</strong> using <strong>two fingers</strong></li>
+    <li><strong>Zoom in and out</strong> using the buttons on the upper left</li>
+    <li><strong>Switch map type</strong>, or <strong>toggle traffic overlay</strong> using the menu on the upper right</li>
+    <li><strong>Go somewhere, get driving directions, or search for businesses</strong> using the menu on the lower left</li>
+    <li><strong>Paginate through local search or driving direction results</strong> using the left and right arrows on the bottom right.  Hit the "X" button to get out of the search.</li>
+    <li><strong>Set a business result as current location</strong>
+by using the pin button on the lower right after you've done a local
+search. You can then get driving directions to there as usual.</li>
+    <li><strong>Open a more detailed page on a business</strong> by using the pop-out button on the lowe right after you've done a local search.</li>
+    <li><strong>See all directions or local search results at once</strong> by scrolling down below the map after you've done a search.</li>
+  </ul>
+<p></p>
+
+<h3>Long story:</h3>
+
+<p>
+When I got my girlfriend an iPod Touch for her birthday, I knew that
+the awesome Google Maps app for the iPhone wouldn't be on there. But I
+didn't know how poorly the Google Maps website would work on the iPod
+Touch -- dragging the map doesn't work, and all the navigation controls
+were too small and hard to hit with my finger. It also didn't redirect
+me to a more appropriate mobile version, and after hunting around for
+the super-stripped down version, I found it was, err, not "cool" enough
+for the friggin' iPod Touch! Google Maps Mobile also unfortunately
+doesn't work on the iPod (no Java :'( ). So I set about writing my own
+Google Maps interface via the maps API for iPod Touch.
+</p>
+
+<p>I really wanted to be able to drag the map around on the iPod Touch;
+otherwise, it seems like such a waste of the touch screen!
+Unfortunately, as I understood it, the webpage doesn't get the normal
+drag events at all. After hunting around for a while, I found Mihai's
+attempt at <a href="http://blog.persistent.info/2007/07/iphone-game-development-tale-of-failure.html" target="_blank">writing a scrolling game for the iPhone</a>
+and learned that though you don't get the single-finger drag events,
+you do get two-finger drag gestures, intended to scroll scrollable divs
+within a page, as scroll events. I placed the Google Maps container
+inside a scrolling div half its size, so you can "kind of" drag the map
+around by actually scrolling the containing div. When you scroll to the
+edge of the div, it resets the scroll position and recenters the map
+(almost seamless with a fast wifi connection). That works pretty well.
+(I've also tried translating all scroll events to map.panTo, but it was
+way too jerky on the iPod to be useful)
+</p>
+
+<p>I store recent geocodable addresses in a cookie. When you want to go
+somewhere, you can either type it out or pick it from a drop-down box
+-- the iPod Touch Safari browser has a pretty nice interface for
+picking an item from a &lt;select&gt;.
+</p>
+
+<p>
+I'm not a 1337 javascripter, so I'd love some feedback.  Please send any questions or comments to <a href="mailto:touchmaps@grapier.com">grapier</a>!  Thanks!
+</p>
+
+
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2413612-2";
+urchinTracker();
+</script>
+
+
+</body></html>
