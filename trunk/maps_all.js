@@ -1,10 +1,11 @@
-function functify(object, func) {
-    return function() {
-	func.apply(object, arguments);
-    };
+function bootstrap() {
+    debug("Bootstrapping...");
+    google.load("maps", "2");
+    google.load("search", "1");
+    google.setOnLoadCallback(start);
 }
 
-function load() {
+function start() {
     map = new GMap2(document.getElementById("map"));
     map.setCenter(new GLatLng(37.4419, -122.1419), 13);
 
@@ -20,10 +21,17 @@ function load() {
     createCookie("firstTime", "false", 100);
 }
 
+
+function functify(object, func) {
+    return function() {
+	func.apply(object, arguments);
+    };
+}
+
 function debug(str) {
-    ;;;if (console) {
-    ;;;  console.debug(str);
-    ;;;}
+    if (console) {
+	console.debug(str);
+    }
 }
 
 function showPromptGlass() {
