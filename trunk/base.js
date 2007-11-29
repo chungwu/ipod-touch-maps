@@ -5,27 +5,25 @@ function functify(object, func) {
 }
 
 function load() {
-    if (GBrowserIsCompatible()) {
-        map = new GMap2(document.getElementById("map"));
-        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+    map = new GMap2(document.getElementById("map"));
+    map.setCenter(new GLatLng(37.4419, -122.1419), 13);
 
-	handler = new MapSurfaceController(map);
+    handler = new MapSurfaceController(map);
 
-	var viewController = new ViewController(handler);
-	var searchController = new SearchController(handler);
-	searchController.gotoLastLocation();
+    var viewController = new ViewController(handler);
+    var searchController = new SearchController(handler);
+    searchController.gotoLastLocation();
 
-	if (readCookie("firstTime") == null) {
-	    new InstructionsPanel().showPrompt();
-	}
-	createCookie("firstTime", "false", 100);
-    }
+    //if (readCookie("firstTime") == null) {
+	new InstructionsPanel().showPrompt();
+	//}
+    createCookie("firstTime", "false", 100);
 }
 
 function debug(str) {
-    if (console) {
-      console.debug(str);
-    }
+    ;;;if (console) {
+    ;;;  console.debug(str);
+    ;;;}
 }
 
 function showPromptGlass() {
