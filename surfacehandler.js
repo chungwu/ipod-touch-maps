@@ -159,8 +159,6 @@ MapSurfaceController.prototype.setMapType = function(mapType) {
 };
 
 MapSurfaceController.prototype.resetScrollPosition = function() {
-    window.scrollTo(0, 1);
-
     var scrollerHeight = this.surface.offsetHeight;
     var scrollerWidth = this.surface.offsetWidth;
     var mapHeight = this.mapContainer.offsetHeight;
@@ -177,6 +175,7 @@ MapSurfaceController.prototype.resetScrollPosition = function() {
         this.scrollEventsToIgnore++;
         this.surface.scrollLeft = desiredScrollLeft;
     }
+    window.scrollTo(0, 1);
 };
 
 MapSurfaceController.prototype.onScroll = function(event) {
