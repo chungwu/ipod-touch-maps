@@ -1,10 +1,3 @@
-function bootstrap() {
-    debug("Bootstrapping...");
-    google.load("maps", "2");
-    google.load("search", "1");
-    google.setOnLoadCallback(start);
-}
-
 function start() {
     map = new GMap2(document.getElementById("map"));
     map.setCenter(new GLatLng(37.4419, -122.1419), 13);
@@ -19,8 +12,13 @@ function start() {
 	new InstructionsPanel().showPrompt();
 	//}
     createCookie("firstTime", "false", 100);
+
+    window.setTimeout("hideAddressBar();", 100);
 }
 
+function hideAddressBar() {
+    window.scrollTo(0, 1);
+}
 
 function functify(object, func) {
     return function() {
@@ -641,6 +639,7 @@ SearchController.prototype.createHandleLocationGeocodeFunction = function(locati
 	    self.locationManager.addLocation(location);
 	    var name = location.getName();
 	    $("currentLocationName").innerHTML = name;
+	    hideAddressBar();
 	}
     };
 };
@@ -744,8 +743,7 @@ MapSurfaceController.prototype.gotoAddress = function(address, callback) {
     var self = this;
     var handler = function(latlng) {
 	if (latlng) {
-	    self.resetScrollPosition();
-	    self.map.setCenter(latlng);
+	    self.setMapCenter(latlng);
 
 	    if (self.currentAddressMarker) {
 		self.map.removeOverlay(self.currentAddressMarker);
@@ -822,7 +820,7 @@ MapSurfaceController.prototype.resetScrollPosition = function() {
         this.scrollEventsToIgnore++;
         this.surface.scrollLeft = desiredScrollLeft;
     }
-    window.scrollTo(0, 1);
+    hideAddressBar();
 };
 
 MapSurfaceController.prototype.onScroll = function(event) {
@@ -857,8 +855,7 @@ MapSurfaceController.prototype.recenterMap = function() {
 
     var curPixelCenter = new GPoint(scrollLeft + surfaceWidth/2, scrollTop + surfaceHeight/2);
     var newCenterLatLng = this.map.fromContainerPixelToLatLng(curPixelCenter);
-    this.map.setCenter(newCenterLatLng);
-    this.resetScrollPosition();
+    this.setMapCenter(newCenterLatLng);
 
     debug("curCenter: " + curPixelCenter + ", new latlng: " + newCenterLatLng);
 };
