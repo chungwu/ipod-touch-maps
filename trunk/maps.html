@@ -31,7 +31,6 @@
         position:absolute;
         left:0px;
         top:0px;
-        background-color: red;
       }
 
       #mapscreen {
@@ -231,7 +230,7 @@
 
     </style>
 
-  <body>
+  <body onload="window.setTimeout('hideAddressBar();', 1);">
     <div id="mapscreen">
       <div id="surface">
 	<div id="map"></div>
@@ -339,6 +338,6 @@
 <script type="text/javascript">
 _uacct = "UA-2413612-2";
 urchinTracker();
-window.scrollTo(0, 1);
+hideAddressBar();
 </script>
   </body></html>
