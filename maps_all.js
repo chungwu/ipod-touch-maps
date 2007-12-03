@@ -940,7 +940,10 @@ InstructionsPanel.prototype.showPrompt = function() {
 InstructionsPanel.prototype.hidePrompt = function() {
     this.prompt.style.display = "none";
     hidePromptGlass();
-};function ViewController(mapController) {
+    hideAddressBar();
+};
+
+function ViewController(mapController) {
     this.mapController = mapController;
 
     $("zoomInButton").onclick = functify(this, this.zoomIn);
