@@ -27,8 +27,8 @@ function functify(object, func) {
 }
 
 function debug(str) {
-    if (console) {
-	console.debug(str);
+    if (console && console.log) {
+	console.log(str);
     }
 }
 
