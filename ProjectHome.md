@@ -1,0 +1,1 @@
+A web page that provides an iPod Touch-friendly UI for Google Maps
